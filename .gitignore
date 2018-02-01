@@ -23,6 +23,9 @@ ExportedObj/
 *.svd
 *.pdb
 
+# Thumbs are just too opposable
+Thumbs.db
+
 # Unity3D generated meta files
 *.pidb.meta
 
