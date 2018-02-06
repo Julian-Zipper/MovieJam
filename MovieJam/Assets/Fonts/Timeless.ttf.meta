@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: e1f879c8fae695a4c8aca17ecafa5f8e
+timeCreated: 1517919855
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Timeless
+  fontNames:
+  - Timeless
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 70cdaae52ccd911488ae2cebc2bb31b6, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
