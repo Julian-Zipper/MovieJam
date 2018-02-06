@@ -17,6 +17,6 @@ public class Menu : MonoBehaviour
 
 	public void HandleStartButton()
 	{
-		GameManager.Instance.StartGame ();
+		ViewManager.Instance.ShowGame();
 	}
 }

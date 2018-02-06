@@ -23,7 +23,6 @@ public class GameManager : Singleton<GameManager>
 	 
 	public void StartGame()
 	{
-		Debug.Log ("starting game");
 		_menu.gameObject.SetActive(false);
 		_matrixGame.gameObject.SetActive(true);
 		//Animates game

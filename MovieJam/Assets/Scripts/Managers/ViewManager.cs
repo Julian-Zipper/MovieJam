@@ -20,9 +20,9 @@ public class ViewManager : Singleton<ViewManager> {
 
     GameObject _upcomingView;
 
-    const float _FADE_ANIMATION_DURATION = 0.4f;
+    const float _FADE_ANIMATION_DURATION = 0.5f;
 
-    public override void Init()
+    override public void Init()
     {
         //settingsSoundButton.Set();
     }
@@ -53,6 +53,7 @@ public class ViewManager : Singleton<ViewManager> {
 
     void _StartFadeout()
     {
+		Debug.Log ("Starting fade out");
         Color c = fadeOverlay.color;
         c.a = 0;
         fadeOverlay.color = c;
@@ -71,8 +72,8 @@ public class ViewManager : Singleton<ViewManager> {
     {
         game.SetActive(false);
         mainMenu.SetActive(false);
-        settings.SetActive(false);
-        _SetSoundButtons();
+        // settings.SetActive(false);
+        // _SetSoundButtons();
         _upcomingView.SetActive(true);
         _StartFadeIn();
     }

@@ -7,8 +7,9 @@ public class GeneralManager : MonoBehaviour
 	void Start ()
 	{
 		// Initialize other managers
-		Application.targetFrameRate = 40;
-		PreferencesManager.Instance.Init();
-		GameManager.Instance.Init();
+		Application.targetFrameRate = 60;
+		PreferencesManager.Instance.Init ();
+		ViewManager.Instance.Init ();
+		GameManager.Instance.Init ();
 	}
 }
