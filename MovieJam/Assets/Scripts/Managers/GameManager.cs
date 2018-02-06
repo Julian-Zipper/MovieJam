@@ -23,15 +23,12 @@ public class GameManager : Singleton<GameManager>
 	 
 	public void StartGame()
 	{
-		_menu.gameObject.SetActive(false);
-		_matrixGame.gameObject.SetActive(true);
 		//_matrixGame.Prepare();
 	}
 
 	public void QuitGame ()
 	{
-		_matrixGame.gameObject.SetActive (false);
-		_menu.gameObject.SetActive (true);
+		ViewManager.Instance.ShowMenu();
 		_menu.Reset();
 	}
 }
