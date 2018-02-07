@@ -23,7 +23,19 @@ public class GameManager : Singleton<GameManager>
 	 
 	public void StartGame()
 	{
-		//_matrixGame.Prepare();
+		Invoke("SpawnSentinel", 0.5f);
+		Invoke("SpawnSentinel", 2.5f);
+		Invoke("SpawnSentinel", 6f);
+		Invoke("SpawnSentinel", 8f);
+		Invoke("SpawnSentinel", 9.5f);
+	}
+
+	// TEST METHOD
+	void SpawnSentinel()
+	{
+		Debug.Log ("spawning sentinel");
+		GameObject newSentinel = GameObject.Instantiate (Resources.Load<GameObject> ("Sentinel/Sentinel"));
+		newSentinel.transform.position = new Vector3 (Random.Range(-8, 1), newSentinel.transform.position.y, 0);
 	}
 
 	public void QuitGame ()
