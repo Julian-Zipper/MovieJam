@@ -53,7 +53,6 @@ public class ViewManager : Singleton<ViewManager> {
 
     void _StartFadeout()
     {
-		Debug.Log ("Starting fade out");
         Color c = fadeOverlay.color;
         c.a = 0;
         fadeOverlay.color = c;
@@ -91,11 +90,9 @@ public class ViewManager : Singleton<ViewManager> {
 
     void _OnFadeInComplete()
     {
-		Debug.Log ("fadeincomplete");
         fadeOverlay.gameObject.SetActive(false);
         if(_upcomingView == game)
         {
-			Debug.Log ("calling gamemanger.StartGame()");
             GameManager.Instance.StartGame();
         }     
     }

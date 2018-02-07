@@ -33,7 +33,6 @@ public class GameManager : Singleton<GameManager>
 	// TEST METHOD
 	void SpawnSentinel()
 	{
-		Debug.Log ("spawning sentinel");
 		GameObject newSentinel = GameObject.Instantiate (Resources.Load<GameObject> ("Sentinel/Sentinel"));
 		newSentinel.transform.position = new Vector3 (Random.Range(-8, 1), newSentinel.transform.position.y, 0);
 	}
