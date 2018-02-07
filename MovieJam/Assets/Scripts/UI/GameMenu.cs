@@ -10,7 +10,6 @@ public class GameMenu : MonoBehaviour {
 
 	Sprite[] _tabSprites;
 
-	// Use this for initialization
 	void Start () {
 		_tabSprites = Resources.LoadAll<Sprite> ("Spritesheets/Tab");
 
@@ -22,15 +21,9 @@ public class GameMenu : MonoBehaviour {
 		containerDefense = transform.Find ("UpgradesBG/DefenseUpgrades").gameObject;
 		container3 = transform.Find ("UpgradesBG/Upgrades_3").gameObject;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void HandleTab1Click()
 	{
-		Debug.Log ("tab 1 clicked");
 		tabOffense.GetComponent<Image> ().sprite = _tabSprites [1];
 		containerOffense.SetActive (true);
 
@@ -42,7 +35,6 @@ public class GameMenu : MonoBehaviour {
 
 	public void HandleTab2Click()
 	{
-		Debug.Log ("tab 2 clicked");
 		tabDefense.GetComponent<Image> ().sprite = _tabSprites [1];
 		containerDefense.SetActive (true);
 
@@ -54,7 +46,6 @@ public class GameMenu : MonoBehaviour {
 
 	public void HandleTab3Click()
 	{
-		Debug.Log ("tab 3 clicked");
 		tab3.GetComponent<Image> ().sprite = _tabSprites [1];
 		container3.SetActive (true);
 

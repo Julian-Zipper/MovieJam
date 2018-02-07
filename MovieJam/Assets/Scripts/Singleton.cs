@@ -2,7 +2,6 @@
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-
 	static T _instance;
 
 	public static T Instance
@@ -11,7 +10,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 		{
 			if (_instance == null)
 			{
-
 				// Find existing instances, allowing Singletons to be placed in the scene
 				_instance = (T)FindObjectOfType(typeof(T));
 
@@ -24,7 +22,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 					DontDestroyOnLoad(singletonObject);
 				}
 			}
-
 			return _instance;
 		}
 	}
@@ -39,5 +36,4 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
 		return _instance != null;
 	}
-
 }
