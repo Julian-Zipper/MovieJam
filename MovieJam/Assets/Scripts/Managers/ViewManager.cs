@@ -91,9 +91,11 @@ public class ViewManager : Singleton<ViewManager> {
 
     void _OnFadeInComplete()
     {
+		Debug.Log ("fadeincomplete");
         fadeOverlay.gameObject.SetActive(false);
         if(_upcomingView == game)
         {
+			Debug.Log ("calling gamemanger.StartGame()");
             GameManager.Instance.StartGame();
         }     
     }
