@@ -9,18 +9,26 @@ public class UnitShoot : MonoBehaviour {
     //if target stops existing, repeat from step 1
 
     private GameObject[] sentinels;
-    private GameObject target;
-    private float fireDelay;
     private int random;
+    private GameObject target;
+
+    private float fireDelay = 0.5f;
+    private float delayInit;
+
+    private Vector2 direction;
+
+    public float bulletVeloc = 1;
+    public GameObject shotPrefab;
 
 	void Start () {
-        FindTarget();
+        delayInit = fireDelay;
 	}
 	
 	void Update () {
 		if(target != null && fireDelay <= 0)
         {
             Fire();
+            fireDelay = delayInit;
         }
 
         if(target == null)
@@ -32,9 +40,17 @@ public class UnitShoot : MonoBehaviour {
         {
             fireDelay -= Time.deltaTime;
         }
+
+        if(target != null)
+        {
+            //determine which way to shoot
+            direction = transform.position - transform.position;
+            direction.Normalize();
+            Debug.DrawLine(transform.position, target.transform.position);
+        }
 	}
 
-    void FindTarget()
+    void FindTarget() // find all sentinels, put them in a list and pick a random one as a target
     {
         sentinels = GameObject.FindGameObjectsWithTag("Sentinel");
         random = Random.Range(0,sentinels.Length - 1); // Random.Range is inclusive so an index starting with 0 won't like X.length unmodified
@@ -43,7 +59,11 @@ public class UnitShoot : MonoBehaviour {
 
     private void Fire()
     {
-        Vector3 targetDirection = target.transform.position - transform.position;
-        transform.forward = targetDirection;
+
+        //create a bullet and give it a velocity
+        GameObject shot = (GameObject)Instantiate(shotPrefab, transform);
+        Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
+        rb.AddForce(direction * bulletVeloc);
+        //Debug.DrawLine(transform.position, direction);
     }
 }
