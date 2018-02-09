@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitShoot : MonoBehaviour {
-    //find ll sentinels, put them in a list
+    //find all sentinels, put them in a list
     //select a sentinel from the list as target
     //fire at target
     //if target stops existing, repeat from step 1
@@ -12,13 +12,13 @@ public class UnitShoot : MonoBehaviour {
     private int random;
     private GameObject target;
 
-    private float fireDelay = 0.5f;
+    public float fireDelay = 0.5f; // public for easy adjusting during testing
     private float delayInit;
 
     private Vector2 direction;
 
-    public float bulletVeloc = 1;
-    public GameObject shotPrefab;
+    public float bulletVeloc = 1; // public for easy adjusting during testing
+    public GameObject shotPrefab; // this is assigned in the inspector of the unit prefab
 
 	void Start () {
         delayInit = fireDelay;
@@ -47,14 +47,18 @@ public class UnitShoot : MonoBehaviour {
             direction = transform.position - transform.position;
             direction.Normalize();
             Debug.DrawLine(transform.position, target.transform.position);
+            Debug.Log("target is at " + target.transform.position);
         }
 	}
 
     void FindTarget() // find all sentinels, put them in a list and pick a random one as a target
     {
         sentinels = GameObject.FindGameObjectsWithTag("Sentinel");
-        random = Random.Range(0,sentinels.Length - 1); // Random.Range is inclusive so an index starting with 0 won't like X.length unmodified
-        target = sentinels[random];
+        if (sentinels.Length >= 1)
+        {
+            random = Random.Range(0, sentinels.Length - 1); // Random.Range is inclusive so an index starting with 0 won't like X.length unmodified
+            target = sentinels[random];
+        }
     }
 
     private void Fire()
