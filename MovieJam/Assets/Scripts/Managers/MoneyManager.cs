@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoneyManager : Singleton<GameManager>
+public class MoneyManager : Singleton<MoneyManager>
 {
     
     public int money;

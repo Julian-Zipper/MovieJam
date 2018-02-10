@@ -17,8 +17,6 @@ public class MatrixGame : MonoBehaviour
 	List<GameObject> sentinels;
 	List<GameObject> apus;
 	List<GameObject> infantry;
-    public GameObject score;
-    MoneyManager moneyManager;
 
     bool _spawning;
 	float _spawnTimer;
@@ -30,7 +28,6 @@ public class MatrixGame : MonoBehaviour
 		sentinels = new List<GameObject> ();
 		apus = new List<GameObject> ();
 		infantry = new List<GameObject> ();
-        moneyManager = score.GetComponent<MoneyManager>();
 
 		Reset ();
 		// TEST CODE
@@ -91,10 +88,9 @@ public class MatrixGame : MonoBehaviour
 				unit.GetComponent<Unit> ().Fire ();
 				Destroy (target, 0.5f);
 				sentinels.RemoveAt (0);
-                moneyManager.money = moneyManager.getMoney() + 5;
-                moneyManager.setMoney(moneyManager.money);
-                moneyManager.updateMoneyText();
-
+                MoneyManager.Instance.money = MoneyManager.Instance.getMoney() + 5;
+                MoneyManager.Instance.setMoney(MoneyManager.Instance.money);
+                MoneyManager.Instance.updateMoneyText();
             }
 		}
 	}
