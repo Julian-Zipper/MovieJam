@@ -52,7 +52,7 @@ public class PreferencesManager : Singleton<PreferencesManager>
 
 	public int Get(string name)
 	{
-		return PlayerPrefs.GetInt (name);
+		return PlayerPrefs.GetInt(name, 0);
 	}
 
 	public void ChangePlayerPreference(string preference)

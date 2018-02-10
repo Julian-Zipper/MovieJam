@@ -12,7 +12,17 @@ public class Unit : MonoBehaviour {
 
 	GameObject shotPrefab;
 
-	void Start() {
+    public enum Type
+    {
+        Infantry,
+        APU,
+        Morpheus,
+        Trinity,
+        Oracle,
+        Neo
+    }
+
+    void Start() {
 		level = 0;
 		shotPrefab = Resources.Load<GameObject> (BULLET_PREFAB_LOCATION);
 	}

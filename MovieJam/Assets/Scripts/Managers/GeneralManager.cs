@@ -11,5 +11,6 @@ public class GeneralManager : MonoBehaviour
 		PreferencesManager.Instance.Init ();
 		ViewManager.Instance.Init ();
 		GameManager.Instance.Init ();
+        ShopManager.Instance.Init();
 	}
 }
