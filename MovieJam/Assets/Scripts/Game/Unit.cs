@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour {
 
-	const float BULLET_SPEED = 1f;
+	const float BULLET_SPEED = 1000f;
+	const string BULLET_PREFAB_LOCATION = "Units/Bullet";
 
 	private GameObject target;
 	private int level;
@@ -13,7 +14,7 @@ public class Unit : MonoBehaviour {
 
 	void Start() {
 		level = 0;
-		shotPrefab = Resources.Load<GameObject> ("Units/Bullet");
+		shotPrefab = Resources.Load<GameObject> (BULLET_PREFAB_LOCATION);
 	}
 
 	public void Levelup()
@@ -31,7 +32,8 @@ public class Unit : MonoBehaviour {
 		if (target != null)
 		{
 			//determine which way to shoot
-			Vector3 direction = target.transform.position - transform.position;
+			Transform sentinelHead = target.transform.GetChild(0);
+			Vector3 direction = sentinelHead.position - transform.position;
 			direction.Normalize ();
 
 			GameObject shot = Instantiate (shotPrefab, transform);

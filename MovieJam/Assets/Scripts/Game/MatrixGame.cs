@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MatrixGame : MonoBehaviour
 {
-	const float SENTINEL_SPAWN_HEIGHT = 7f;
+	const float SENTINEL_SPAWN_HEIGHT = 6.25f;
 	const float SENTINEL_SPAWN_MIN_X = -8f;
 	const float SENTINEL_SPAWN_MAX_X = 1f;
 
 	const float UNIT_SPAWN_MIN_X = -8f;
 	const float UNIT_SPAWN_MAX_X = 1f;
 	const float UNIT_SPAWN_HEIGHT = -2.5f;
+
+	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 3f;
 
 	List<GameObject> sentinels;
 	List<GameObject> apus;
@@ -28,15 +30,16 @@ public class MatrixGame : MonoBehaviour
 		infantry = new List<GameObject> ();
 
 		Reset ();
-		Invoke ("SpawnInfantry", 5f);
-		Invoke ("SpawnInfantry", 10f);
+		// TEST CODE
+		Invoke ("SpawnInfantry", 2f);
+		Invoke ("SpawnInfantry", 4f);
 	}
 
 	public void Reset()
 	{
 		_spawning = false;
 		_spawnTimer = 0f;
-		_spawnTreshold = 10f;
+		_spawnTreshold = SENTINEL_STARTING_SPAWN_TRESHOLD;
 	}
 	
 	// Update is called once per frame
@@ -70,18 +73,20 @@ public class MatrixGame : MonoBehaviour
 	void SpawnInfantry()
 	{
 		GameObject newInfantry = GameObject.Instantiate (Resources.Load<GameObject> ("Units/Infantry"));
+		// TODO: instead of giving infantry a random position, give them a set position.
 		newInfantry.transform.position = new Vector3 (Random.Range(UNIT_SPAWN_MIN_X, UNIT_SPAWN_MAX_X), UNIT_SPAWN_HEIGHT, 0);
 		infantry.Add (newInfantry);
 	}
 
-	void HandleShootClick()
+	public void HandleShootClick()
 	{
 		foreach (GameObject unit in infantry) {
 			if (sentinels.Count > 0)
 			{
 				GameObject target = sentinels [0];
 				unit.GetComponent<Unit> ().AcquireTarget(target);
-				unit.GetComponent<UnitShoot> ().Fire ();
+				unit.GetComponent<Unit> ().Fire ();
+				Destroy (target, 0.5f);
 				sentinels.RemoveAt (0);
 			}
 		}
