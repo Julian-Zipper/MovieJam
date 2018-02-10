@@ -17,6 +17,7 @@ public class ViewManager : Singleton<ViewManager> {
     public SoundButton settingsSoundButton;
     [SerializeField]
     public SoundButton pauseSoundButton;*/
+    
 
     GameObject _upcomingView;
 
