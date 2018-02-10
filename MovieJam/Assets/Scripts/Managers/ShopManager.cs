@@ -28,7 +28,11 @@ public class ShopManager : Singleton<ShopManager> {
         {
             //TODO: Check if there's enough money before upgrading. If not, show feedback?
             case 0:
+                //Example:
+                //if(MoneyManager.Instance.UnitAvailable(Unit.Type.Infantry))
                 _UpgradeUnit(Unit.Type.Infantry);
+                //else
+                //FeedbackManager.Instance.ShowNotEnoughMoneyFeedback();
                 break;
             case 1:
                 _UpgradeUnit(Unit.Type.APU);
@@ -53,28 +57,32 @@ public class ShopManager : Singleton<ShopManager> {
         switch (type)
         {
             case Unit.Type.Infantry:
-                _infantryLevel++;
-                PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
+                //TODO: Add and activate another infantry unit
                 break;
             case Unit.Type.APU:
                 _APUlevel++;
                 PreferencesManager.Instance.SetValue("APULevel", _APUlevel);
+                // GameManager.Instance.GetUnit(type).Upgrade(_APUlevel);
                 break;
             case Unit.Type.Morpheus:
                 _morpheusLevel++;
                 PreferencesManager.Instance.SetValue("MorpheusLevel", _morpheusLevel);
+                // GameManager.Instance.GetUnit(type).Upgrade(_morpheusLevel);
                 break;
             case Unit.Type.Trinity:
                 _trinityLevel++;
                 PreferencesManager.Instance.SetValue("TrinityLevel", _trinityLevel);
+                // GameManager.Instance.GetUnit(type).Upgrade(_trinityLevel);
                 break;
             case Unit.Type.Oracle:
                 _oracleLevel++;
                 PreferencesManager.Instance.SetValue("OracleLevel", _oracleLevel);
+                // GameManager.Instance.GetUnit(type).Upgrade(_oracleLevel);
                 break;
             case Unit.Type.Neo:
                 _neoLevel++;
                 PreferencesManager.Instance.SetValue("NeoLevel", _neoLevel);
+                // GameManager.Instance.GetUnit(type).Upgrade(_neoLevel);
                 break;
         }
     }

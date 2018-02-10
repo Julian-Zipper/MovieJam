@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1054,8 +1054,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.59998, y: -58.303112}
-  m_SizeDelta: {x: 699.19995, y: 116.606224}
+  m_AnchoredPosition: {x: 349.66235, y: -58.303112}
+  m_SizeDelta: {x: 699.3247, y: 116.606224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &291951388
 MonoBehaviour:
@@ -1350,7 +1350,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 407005058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487489416}
+        m_MethodName: HandleShopButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &407005058
@@ -1749,7 +1760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 624.3333, y: 0}
+  m_AnchoredPosition: {x: 624.43726, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &464209383
@@ -1849,6 +1860,7 @@ GameObject:
   - component: {fileID: 487489415}
   - component: {fileID: 487489414}
   - component: {fileID: 487489417}
+  - component: {fileID: 487489416}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1903,6 +1915,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1316867857}
+--- !u!114 &487489416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 487489411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e9b0de1f07ddd4599321783307eff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &487489417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,7 +2657,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 725543826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487489416}
+        m_MethodName: HandleShopButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &725543826
@@ -3501,8 +3535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.59998, y: -524.728}
-  m_SizeDelta: {x: 699.19995, y: 116.606224}
+  m_AnchoredPosition: {x: 349.66235, y: -524.728}
+  m_SizeDelta: {x: 699.3247, y: 116.606224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &936730478
 MonoBehaviour:
@@ -3574,7 +3608,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.00012207031, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006305367
 MonoBehaviour:
@@ -3667,8 +3701,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.59998, y: -641.3342}
-  m_SizeDelta: {x: 699.19995, y: 116.606224}
+  m_AnchoredPosition: {x: 349.66235, y: -641.3342}
+  m_SizeDelta: {x: 699.3247, y: 116.606224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057842441
 MonoBehaviour:
@@ -3737,8 +3771,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.59998, y: -174.90933}
-  m_SizeDelta: {x: 699.19995, y: 116.606224}
+  m_AnchoredPosition: {x: 349.66235, y: -174.90933}
+  m_SizeDelta: {x: 699.3247, y: 116.606224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1067579270
 MonoBehaviour:
@@ -4541,7 +4575,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -799.9999, y: 0}
+  m_SizeDelta: {x: -800.1249, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1199780637
 MonoBehaviour:
@@ -4707,7 +4741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 124.86666, y: 0}
+  m_AnchoredPosition: {x: 124.88745, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1280991718
@@ -5042,7 +5076,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1335243831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487489416}
+        m_MethodName: HandleShopButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1335243831
@@ -5624,7 +5669,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1120.7999, y: 0}
+  m_SizeDelta: {x: -1120.9751, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1443033560
 MonoBehaviour:
@@ -5717,8 +5762,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.59998, y: -408.12177}
-  m_SizeDelta: {x: 699.19995, y: 116.606224}
+  m_AnchoredPosition: {x: 349.66235, y: -408.12177}
+  m_SizeDelta: {x: 699.3247, y: 116.606224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450157516
 MonoBehaviour:
@@ -5787,8 +5832,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.59998, y: -291.51556}
-  m_SizeDelta: {x: 699.19995, y: 116.606224}
+  m_AnchoredPosition: {x: 349.66235, y: -291.51556}
+  m_SizeDelta: {x: 699.3247, y: 116.606224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451335507
 MonoBehaviour:
@@ -6882,7 +6927,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1664154371}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487489416}
+        m_MethodName: HandleShopButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1664154371
@@ -6993,7 +7049,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1697198980}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487489416}
+        m_MethodName: HandleShopButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1697198980
@@ -7659,7 +7726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 374.59998, y: 0}
+  m_AnchoredPosition: {x: 374.66235, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1813487714
@@ -8130,7 +8197,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1894827987}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487489416}
+        m_MethodName: HandleShopButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1894827987
