@@ -61,7 +61,12 @@ public class UnitShoot : MonoBehaviour {
         }
     }
 
-    private void Fire()
+	public void AcquireTarget(GameObject target)
+	{
+
+	}
+
+    public void Fire()
     {
 
         //create a bullet and give it a velocity
