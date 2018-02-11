@@ -25,11 +25,13 @@ public class ShopManager : Singleton<ShopManager> {
 	const string NUM = "Current Lvl: ";
 
 	const int INFANTRY_BASE_COST = 100;
-	const int APU_BASE_COST = 100;
-	const int MORPHEUS_BASE_COST = 100;
-	const int TRINITY_BASE_COST = 100;
-	const int ORACLE_BASE_COST = 100;
-	const int NEO_BASE_COST = 100;
+	const int APU_BASE_COST = 200;
+	const int MORPHEUS_BASE_COST = 500;
+	const int TRINITY_BASE_COST = 1000;
+	const int ORACLE_BASE_COST = 2000;
+	const int NEO_BASE_COST = 5000;
+
+	const float UPGRADE_POWER_MULTIPLIER = 0.05f;
 
     public override void Init()
     {
@@ -92,16 +94,49 @@ public class ShopManager : Singleton<ShopManager> {
 		int unitLevel = GetUnitLevel (typeNum);
 
 		string verb = UPGRADE;
-		if (unitLevel == 0) {
+		if (unitLevel == 0)
+		{
 			verb = PURCHASE;
 		}
-		return (verb + upgradeDescriptionNames [number]);
+
+		int cost = GetUnitCost(number);
+		return (verb + upgradeDescriptionNames [number] + ":\n" + cost + " $");
 	}
 
 	string GetDescriptionText(int number)
 	{
 		Unit.Type typeNum = (Unit.Type) number;
 		return (upgradeDescriptionNames [number] + ": " + upgradeDescriptions [number] + "\n" + NUM + GetUnitLevel (typeNum));
+	}
+
+	int GetUnitCost(int number)
+	{
+		Unit.Type typeNum = (Unit.Type) number;
+
+		switch (typeNum)
+		{
+		case Unit.Type.Infantry:
+			return CalculateValue (_infantryLevel, INFANTRY_BASE_COST);
+		case Unit.Type.APU:
+			return CalculateValue (_APUlevel, APU_BASE_COST);
+		case Unit.Type.Morpheus:
+			return CalculateValue (_morpheusLevel, MORPHEUS_BASE_COST);
+		case Unit.Type.Trinity:
+			return CalculateValue (_trinityLevel, TRINITY_BASE_COST);
+		case Unit.Type.Oracle:
+			return CalculateValue (_oracleLevel, ORACLE_BASE_COST);
+		case Unit.Type.Neo:
+			return CalculateValue (_neoLevel, NEO_BASE_COST);
+		default:
+			return 0;
+		}
+	}
+
+	int CalculateValue(int level, int cost)
+	{
+		float baseValue = (1 + level) * cost;
+		baseValue = Mathf.Pow(baseValue, 1 + (UPGRADE_POWER_MULTIPLIER * level));
+		return (int)baseValue;
 	}
 
     public void HandleShopButton(int buttonNumber)
@@ -117,8 +152,8 @@ public class ShopManager : Singleton<ShopManager> {
     {
         int money = MoneyManager.Instance.GetMoney();
         
-        int cost = GetUnitCost(type);
-        if (money >= cost)
+		int currentCost = GetUnitCost((int) type);
+        if (money >= currentCost)
         {
                 
             switch (type)
@@ -126,45 +161,43 @@ public class ShopManager : Singleton<ShopManager> {
                 case Unit.Type.Infantry:
                     if (_infantryLevel < 5)
                     {
-                        MoneyManager.Instance.SubtractMoney(INFANTRY_BASE_COST);
                         _infantryLevel++;
                         PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
                         GameManager.Instance.GetInfantryUnits()[_infantryLevel - 1].Show();
+						MoneyManager.Instance.SubtractMoney(currentCost);
                     }
                     break;
                 case Unit.Type.APU:
                     _APUlevel++;
-                    //MoneyManager.Instance.setMoney(money - cost);
                     PreferencesManager.Instance.SetValue("APULevel", _APUlevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_APUlevel);
+					MoneyManager.Instance.SubtractMoney(currentCost);
                     break;
                 case Unit.Type.Morpheus:
                     _morpheusLevel++;
-                    //MoneyManager.Instance.setMoney(money - cost);
                     PreferencesManager.Instance.SetValue("MorpheusLevel", _morpheusLevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_morpheusLevel);
+					MoneyManager.Instance.SubtractMoney(currentCost);
                     break;
                 case Unit.Type.Trinity:
                     _trinityLevel++;
                     PreferencesManager.Instance.SetValue("TrinityLevel", _trinityLevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_trinityLevel);
+					MoneyManager.Instance.SubtractMoney(currentCost);
                     break;
                 case Unit.Type.Oracle:
                     _oracleLevel++;
                     PreferencesManager.Instance.SetValue("OracleLevel", _oracleLevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_oracleLevel);
-                    //MoneyManager.Instance.setMoney(money - cost);
+					MoneyManager.Instance.SubtractMoney(currentCost);
                     break;
                 case Unit.Type.Neo:
                     _neoLevel++;
                     PreferencesManager.Instance.SetValue("NeoLevel", _neoLevel);
-                    
                     GameManager.Instance.GetUnit(type).Upgrade(_neoLevel);
-                    //MoneyManager.Instance.setMoney(money - cost);
+					MoneyManager.Instance.SubtractMoney(currentCost);
                     break;
             }
-
-
         }else
         {
             MoneyManager.Instance.notEnougFundsText(type.ToString());
@@ -187,27 +220,6 @@ public class ShopManager : Singleton<ShopManager> {
                 return _oracleLevel;
             case Unit.Type.Neo:
                 return _neoLevel;
-            default:
-                return 0;
-        }
-    }
-
-    public int GetUnitCost(Unit.Type unitype)
-    {
-        switch (unitype)
-        {
-            case Unit.Type.Infantry:
-                return 10 * (1 + _infantryLevel) ;
-            case Unit.Type.APU:
-                return 30 * (1 + _APUlevel) ;
-            case Unit.Type.Morpheus:
-                return 80 * (1 + _morpheusLevel) ;
-            case Unit.Type.Trinity:
-                return 160* (1 + _trinityLevel) ;
-            case Unit.Type.Oracle:
-                return 250 * (1 + _oracleLevel) ;
-            case Unit.Type.Neo:
-                return 500* (1 + _neoLevel) ;
             default:
                 return 0;
         }

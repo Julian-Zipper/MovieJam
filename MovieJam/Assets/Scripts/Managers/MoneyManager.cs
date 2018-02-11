@@ -27,9 +27,7 @@ public class MoneyManager : Singleton<MoneyManager>
     public void AddMoney(int addMoney)
     {
 		int money = GetMoney ();
-		Debug.Log ("money before changing shit = " + money);
 		int resultingMoney = money + addMoney;
-		Debug.Log ("resultingMoney = " + resultingMoney + ", addMoney = " + addMoney);
 		PreferencesManager.Instance.SetValue ("money", resultingMoney);
         UpdateMoneyText();
     }
@@ -37,13 +35,8 @@ public class MoneyManager : Singleton<MoneyManager>
 	public void SubtractMoney(int subtractMoney)
 	{
 		int money = GetMoney ();
-		Debug.Log ("money before changing shit = " + money);
 		int resultingMoney = money - subtractMoney;
-		Debug.Log ("resultingMoney = " + resultingMoney + ", subtractMoney = " + subtractMoney);
 		PreferencesManager.Instance.SetValue ("money", resultingMoney);
-
-		int checkmoneyagain = GetMoney ();
-		Debug.Log ("money after saving = " + checkmoneyagain);
 		UpdateMoneyText();
 	}
 

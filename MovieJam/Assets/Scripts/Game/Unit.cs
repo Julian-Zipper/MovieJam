@@ -70,7 +70,6 @@ public class Unit : MonoBehaviour {
 			Destroy (shot, 2f);
 			Rigidbody2D rb = shot.GetComponent<Rigidbody2D> ();
 
-			Debug.Log ("direction = " + direction + ", bulletSpeed = " + bulletSpeed);
 			rb.AddForce (direction * bulletSpeed);
 			target = null;
 		}
