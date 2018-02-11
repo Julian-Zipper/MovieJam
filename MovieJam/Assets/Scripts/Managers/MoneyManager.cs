@@ -16,7 +16,6 @@ public class MoneyManager : Singleton<MoneyManager>
     {
         moneyText = canvas.Find("GameView/UI/GameMenu/Score").GetComponent<Text>();
         moneyText.text = "ZION_$: " + getMoney();
-        Debug.Log(getMoney());
     }
 
     public void setMoney(int money)
