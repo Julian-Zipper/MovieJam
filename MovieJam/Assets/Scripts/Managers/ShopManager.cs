@@ -62,27 +62,27 @@ public class ShopManager : Singleton<ShopManager> {
             case Unit.Type.APU:
                 _APUlevel++;
                 PreferencesManager.Instance.SetValue("APULevel", _APUlevel);
-                // GameManager.Instance.GetUnit(type).Upgrade(_APUlevel);
+                GameManager.Instance.GetUnit(type).Upgrade(_APUlevel);
                 break;
             case Unit.Type.Morpheus:
                 _morpheusLevel++;
                 PreferencesManager.Instance.SetValue("MorpheusLevel", _morpheusLevel);
-                // GameManager.Instance.GetUnit(type).Upgrade(_morpheusLevel);
+                GameManager.Instance.GetUnit(type).Upgrade(_morpheusLevel);
                 break;
             case Unit.Type.Trinity:
                 _trinityLevel++;
                 PreferencesManager.Instance.SetValue("TrinityLevel", _trinityLevel);
-                // GameManager.Instance.GetUnit(type).Upgrade(_trinityLevel);
+                GameManager.Instance.GetUnit(type).Upgrade(_trinityLevel);
                 break;
             case Unit.Type.Oracle:
                 _oracleLevel++;
                 PreferencesManager.Instance.SetValue("OracleLevel", _oracleLevel);
-                // GameManager.Instance.GetUnit(type).Upgrade(_oracleLevel);
+                GameManager.Instance.GetUnit(type).Upgrade(_oracleLevel);
                 break;
             case Unit.Type.Neo:
                 _neoLevel++;
                 PreferencesManager.Instance.SetValue("NeoLevel", _neoLevel);
-                // GameManager.Instance.GetUnit(type).Upgrade(_neoLevel);
+                GameManager.Instance.GetUnit(type).Upgrade(_neoLevel);
                 break;
         }
     }

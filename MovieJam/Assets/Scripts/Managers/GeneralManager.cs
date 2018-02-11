@@ -10,8 +10,9 @@ public class GeneralManager : MonoBehaviour
 		Application.targetFrameRate = 60;
 		PreferencesManager.Instance.Init ();
 		ViewManager.Instance.Init ();
-		GameManager.Instance.Init ();
         ShopManager.Instance.Init();
+        GameManager.Instance.Init ();
+        
        
 	}
 }

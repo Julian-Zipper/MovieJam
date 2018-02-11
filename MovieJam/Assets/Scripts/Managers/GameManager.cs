@@ -15,6 +15,16 @@ public class GameManager : Singleton<GameManager>
     //TODO: Add all getters for unit gameobjects
     //[SerializeField]
     //Infantry infantry;
+    [SerializeField]
+    APU apu;
+    [SerializeField]
+    Morpheus morpheus;
+    [SerializeField]
+    Trinity trinity;
+    [SerializeField]
+    Oracle oracle;
+    [SerializeField]
+    Neo neo;
 
     override public void Init()
 	{
@@ -22,6 +32,11 @@ public class GameManager : Singleton<GameManager>
 		_menu.Init();
 		_matrixGame = canvas.Find("GameView").GetComponent<MatrixGame>();      
 		_matrixGame.Init();
+        apu.Init();
+        morpheus.Init();
+        trinity.Init();
+        oracle.Init();
+        neo.Init();
 		//_timerForTimeGameMode = _ballGame.transform.Find("GameTimer").GetComponent<TimerForTimeGameMode>();
 	}
 	 
@@ -38,13 +53,12 @@ public class GameManager : Singleton<GameManager>
 		_menu.Reset();
 	}
 
-    public void GetUnit(Unit.Type unitType)
+    public Unit GetUnit(Unit.Type unitType)
     {
-        /*
         switch (unitType)
         {
-            case Unit.Type.Infantry:
-                return infantry;
+            //case Unit.Type.Infantry:
+              //  return infantry;
             case Unit.Type.APU:
                 return apu;
             case Unit.Type.Morpheus:
@@ -56,6 +70,6 @@ public class GameManager : Singleton<GameManager>
             case Unit.Type.Neo:
                 return neo;
         }
-        */
+        return null;
     }
 }
