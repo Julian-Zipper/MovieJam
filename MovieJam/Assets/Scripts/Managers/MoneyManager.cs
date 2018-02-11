@@ -7,17 +7,25 @@ public class MoneyManager : Singleton<MoneyManager>
 {
     
     public int money;
-    Text moneyText;
+    [SerializeField]
+     Text moneyText;
+    [SerializeField]
+    Text fundsText;
+   
 
-    private void Start()
+
+    override public void Init()
     {
-        moneyText = gameObject.GetComponent<Text>();
+       
         moneyText.text = "ZION_$: " + getMoney();
+        setMoney(money);
+        getMoney();
     }
 
     public void setMoney(int money)
     {
         PlayerPrefs.SetInt("money", money);
+        updateMoneyText();
     }
 
 
@@ -25,6 +33,12 @@ public class MoneyManager : Singleton<MoneyManager>
     {          
         moneyText.text = "ZION_$: " + getMoney();
 
+    }
+
+    public void notEnougFundsText(string unit)
+    {
+       
+        fundsText.text = "You do not have enough ZION_$ to buy:" + unit;
     }
 
 

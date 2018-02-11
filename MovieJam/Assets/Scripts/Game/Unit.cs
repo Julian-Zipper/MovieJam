@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour {
 
 	private GameObject target;
 	private int level;
+    
 
     [HideInInspector]
     public Type type;
