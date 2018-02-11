@@ -30,9 +30,6 @@ public class MatrixGame : MonoBehaviour
 		infantry = new List<GameObject> ();
 
 		Reset ();
-		// TEST CODE
-		Invoke ("SpawnInfantry", 2f);
-		Invoke ("SpawnInfantry", 4f);
 	}
 
 	public void Reset()
