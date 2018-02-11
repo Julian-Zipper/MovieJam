@@ -2178,7 +2178,7 @@ MonoBehaviour:
   trinity: {fileID: 23887913}
   oracle: {fileID: 2017738458}
   neo: {fileID: 1749800143}
-  infantryUnitsHolder: {fileID: 0}
+  infantryUnitsHolder: {fileID: 193117927}
 --- !u!114 &487489416
 MonoBehaviour:
   m_ObjectHideFlags: 0
