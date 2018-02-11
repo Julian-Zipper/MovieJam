@@ -12,7 +12,8 @@ public class MatrixGame : MonoBehaviour
 	const float UNIT_SPAWN_MAX_X = 1f;
 	const float UNIT_SPAWN_HEIGHT = -2.5f;
 
-	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 3f;
+	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 8f;
+	const float SPAWN_TRESHOLD_MULTIPLIER = 1.4f;
 
 	List<GameObject> sentinels;
 	List<GameObject> apus;
@@ -65,6 +66,11 @@ public class MatrixGame : MonoBehaviour
 		newSentinel.transform.position = new Vector3 (Random.Range(SENTINEL_SPAWN_MIN_X, SENTINEL_SPAWN_MAX_X), SENTINEL_SPAWN_HEIGHT, 0);
 		newSentinel.tag = "Sentinel";
 		sentinels.Add (newSentinel);
+	}
+
+	public void IncreaseSentinelSpawnrate()
+	{
+		_spawnTreshold = _spawnTreshold / SPAWN_TRESHOLD_MULTIPLIER;
 	}
 
 	public void AddInfantry(GameObject newInfantry)

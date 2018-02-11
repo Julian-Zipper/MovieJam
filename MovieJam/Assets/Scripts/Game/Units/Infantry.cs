@@ -28,6 +28,7 @@ public class Infantry : Unit
         firing = true;
 		Debug.Log ("Called Show method");
 		GameManager.Instance.AddInfantry (this.gameObject);
+		GameManager.Instance.IncreaseSentinelSpawnrate ();
     }
 
     public override void Fire()
