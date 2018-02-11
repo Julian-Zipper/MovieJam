@@ -109,7 +109,7 @@ public class ShopManager : Singleton<ShopManager> {
     void _UpgradeUnit(Unit.Type type)
     {
         int money = MoneyManager.Instance.getMoney();
-
+        Debug.Log("kek");
         int cost = GetUnitCost(type);
         if (money >= cost)
         {
@@ -175,17 +175,17 @@ public class ShopManager : Singleton<ShopManager> {
         switch (unitype)
         {
             case Unit.Type.Infantry:
-                return 10 * _infantryLevel;
+                return 10 * (1 + _infantryLevel) ;
             case Unit.Type.APU:
-                return 30 * _APUlevel;
+                return 30 * (1 + _APUlevel) ;
             case Unit.Type.Morpheus:
-                return 80 * _morpheusLevel;
+                return 80 * (1 + _morpheusLevel) ;
             case Unit.Type.Trinity:
-                return 160* _trinityLevel;
+                return 160* (1 + _trinityLevel) ;
             case Unit.Type.Oracle:
-                return 250 * _oracleLevel;
+                return 250 * (1 + _oracleLevel) ;
             case Unit.Type.Neo:
-                return 500* _neoLevel;
+                return 500* (1 + _neoLevel) ;
             default:
                 return 0;
         }

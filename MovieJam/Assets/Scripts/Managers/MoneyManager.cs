@@ -16,11 +16,14 @@ public class MoneyManager : Singleton<MoneyManager>
     {
        
         moneyText.text = "ZION_$: " + getMoney();
+        setMoney(money);
+        getMoney();
     }
 
     public void setMoney(int money)
     {
         PlayerPrefs.SetInt("money", money);
+        updateMoneyText();
     }
 
 
