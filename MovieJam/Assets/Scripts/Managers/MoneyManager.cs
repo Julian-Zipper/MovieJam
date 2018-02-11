@@ -7,14 +7,14 @@ public class MoneyManager : Singleton<MoneyManager>
 {
     
     public int money;
-     Text moneyText;
     [SerializeField]
-    Transform canvas;
+     Text moneyText;
+   
 
 
     override public void Init()
     {
-        moneyText = canvas.Find("GameView/UI/GameMenu/Score").GetComponent<Text>();
+       
         moneyText.text = "ZION_$: " + getMoney();
     }
 
