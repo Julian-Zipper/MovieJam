@@ -86,6 +86,17 @@ public class GameManager : Singleton<GameManager>
         return null;
     }
 
+	public void AddInfantry(GameObject infantry)
+	{
+		_matrixGame.AddInfantry (infantry);
+	}
+
+	public GameObject AcquireTarget()
+	{
+		GameObject target = _matrixGame.GetSentinel ();
+		return target;
+	}
+
     public List<Infantry> GetInfantryUnits()
     {
         return infantryUnits;
