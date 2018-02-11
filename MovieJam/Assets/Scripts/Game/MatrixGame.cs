@@ -12,7 +12,7 @@ public class MatrixGame : MonoBehaviour
 	const float UNIT_SPAWN_MAX_X = 1f;
 	const float UNIT_SPAWN_HEIGHT = -2.5f;
 
-	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 8f;
+	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 6.25f;
 	const float SPAWN_TRESHOLD_MULTIPLIER = 1.4f;
 
 	List<GameObject> sentinels;
@@ -68,9 +68,9 @@ public class MatrixGame : MonoBehaviour
 		sentinels.Add (newSentinel);
 	}
 
-	public void IncreaseSentinelSpawnrate()
+	public void IncreaseSentinelSpawnrate(float multiplier)
 	{
-		_spawnTreshold = _spawnTreshold / SPAWN_TRESHOLD_MULTIPLIER;
+		_spawnTreshold = _spawnTreshold / multiplier;
 	}
 
 	public void AddInfantry(GameObject newInfantry)
@@ -101,8 +101,6 @@ public class MatrixGame : MonoBehaviour
 				unit.GetComponent<Infantry> ().Fire ();
 				Destroy (target, 0.5f);
 				sentinels.RemoveAt (0);
-                MoneyManager.Instance.AddMoney(100);
-                // MoneyManager.Instance.updateMoneyText();
             }
 		}
 	}

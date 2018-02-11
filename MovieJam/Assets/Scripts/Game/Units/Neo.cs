@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Neo : Unit
 {
-
-    const float DEFAULT_BULLET_COOLDOWN = 1;
+	const float SENTINEL_SPAWN_MULTIPLIER = 3f;
+    const float DEFAULT_BULLET_COOLDOWN = 0.25f;
     float bulletCooldown;
     float cooldownTime;
 
@@ -29,8 +29,9 @@ public class Neo : Unit
             gameObject.SetActive(false);
             firing = false;
         }
-        else
+		else if (!gameObject.activeInHierarchy)
         {
+			GameManager.Instance.IncreaseSentinelSpawnrate (SENTINEL_SPAWN_MULTIPLIER);
             gameObject.SetActive(true);
             firing = true;
         }

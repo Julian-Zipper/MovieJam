@@ -32,6 +32,7 @@ public class ShopManager : Singleton<ShopManager> {
 	const int NEO_BASE_COST = 5000;
 
 	const float UPGRADE_POWER_MULTIPLIER = 0.05f;
+	const float UPGRADE_POWER_INFANTRY_MULTIPLIER = 0.225f;
 
     public override void Init()
     {
@@ -40,7 +41,7 @@ public class ShopManager : Singleton<ShopManager> {
 
 		upgradeDescriptionNames = new List<string>{ "Infantry", "APU", "Morpheus", "Trinity", "Oracle", "Neo" };
 		upgradeDescriptions = new List<string>{
-			"Shoots with every click.",
+			"Shoots with every click.\nAlso attracts Sentinels.",
 			"Shoots automatically.\nAlso attracts some Sentinels.",
 			"Shoots automatically.\nAlso attracts Sentinels.",
 			"Shoots automatically.\nAlso attracts Sentinels.",
@@ -116,7 +117,7 @@ public class ShopManager : Singleton<ShopManager> {
 		switch (typeNum)
 		{
 		case Unit.Type.Infantry:
-			return CalculateValue (_infantryLevel, INFANTRY_BASE_COST);
+			return CalculateInfantryValue (_infantryLevel, INFANTRY_BASE_COST);
 		case Unit.Type.APU:
 			return CalculateValue (_APUlevel, APU_BASE_COST);
 		case Unit.Type.Morpheus:
@@ -130,6 +131,13 @@ public class ShopManager : Singleton<ShopManager> {
 		default:
 			return 0;
 		}
+	}
+
+	int CalculateInfantryValue(int level, int cost)
+	{
+		float baseValue = (1 + level) * cost;
+		baseValue = Mathf.Pow(baseValue, 1 + (UPGRADE_POWER_INFANTRY_MULTIPLIER * level));
+		return (int)baseValue;
 	}
 
 	int CalculateValue(int level, int cost)

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MoneyManager : Singleton<MoneyManager>
 {
-	const int STARTING_MONEY = 100;
+	const int STARTING_MONEY = 200;
 
     public int money;
     

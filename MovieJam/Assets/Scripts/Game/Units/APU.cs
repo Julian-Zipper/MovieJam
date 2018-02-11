@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class APU : Unit {
 
-    const float DEFAULT_BULLET_COOLDOWN = 5;
+	const float SENTINEL_SPAWN_MULTIPLIER = 1.4f;
+    const float DEFAULT_BULLET_COOLDOWN = 6f;
     float bulletCooldown;
     float cooldownTime;
+
+	int lastLevel = 0;
 
     const float BULLET_COOLDOWN_LEVEL_MULTIPLIER = 1.2f;
 
@@ -28,10 +31,11 @@ public class APU : Unit {
             gameObject.SetActive(false);
             firing = false;
         }
-        else
-        {
-            gameObject.SetActive(true);
-            firing = true;
+		else if (!gameObject.activeInHierarchy)
+		{
+			GameManager.Instance.IncreaseSentinelSpawnrate (SENTINEL_SPAWN_MULTIPLIER);
+			gameObject.SetActive (true);
+			firing = true;
         }
         bulletCooldown = DEFAULT_BULLET_COOLDOWN / (currentLevel * BULLET_COOLDOWN_LEVEL_MULTIPLIER);
     }

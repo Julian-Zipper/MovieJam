@@ -72,6 +72,8 @@ public class Unit : MonoBehaviour {
 
 			rb.AddForce (direction * bulletSpeed);
 			target = null;
+
+			MoneyManager.Instance.AddMoney(100); 
 		}
 	}
 }

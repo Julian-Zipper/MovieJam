@@ -92,9 +92,9 @@ public class GameManager : Singleton<GameManager>
 		_matrixGame.AddInfantry (infantry);
 	}
 
-	public void IncreaseSentinelSpawnrate()
+	public void IncreaseSentinelSpawnrate(float multiplier)
 	{
-		_matrixGame.IncreaseSentinelSpawnrate ();
+		_matrixGame.IncreaseSentinelSpawnrate (multiplier);
 	}
 
 	public GameObject AcquireTarget()

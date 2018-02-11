@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Morpheus : Unit
 {
-
-    const float DEFAULT_BULLET_COOLDOWN = 1;
+	const float SENTINEL_SPAWN_MULTIPLIER = 1.6f;
+    const float DEFAULT_BULLET_COOLDOWN = 5f;
     float bulletCooldown;
     float cooldownTime;
 
-    const float BULLET_COOLDOWN_LEVEL_MULTIPLIER = 1.2f;
+    const float BULLET_COOLDOWN_LEVEL_MULTIPLIER = 1.5f;
 
     bool firing;
 
@@ -29,8 +29,9 @@ public class Morpheus : Unit
             gameObject.SetActive(false);
             firing = false;
         }
-        else
+		else if (!gameObject.activeInHierarchy)
         {
+			GameManager.Instance.IncreaseSentinelSpawnrate (SENTINEL_SPAWN_MULTIPLIER);
             gameObject.SetActive(true);
             firing = true;
         }

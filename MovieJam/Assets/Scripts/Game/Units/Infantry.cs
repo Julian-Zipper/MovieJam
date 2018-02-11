@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Infantry : Unit
 {
-
-    const float DEFAULT_BULLET_COOLDOWN = 1;
+	const float SENTINEL_SPAWN_MULTIPLIER = 1.35f;
+    const float DEFAULT_BULLET_COOLDOWN = 1f;
     float bulletCooldown;
     float cooldownTime;
 
@@ -26,9 +26,8 @@ public class Infantry : Unit
     {
         gameObject.SetActive(true);
         firing = true;
-		Debug.Log ("Called Show method");
 		GameManager.Instance.AddInfantry (this.gameObject);
-		GameManager.Instance.IncreaseSentinelSpawnrate ();
+		GameManager.Instance.IncreaseSentinelSpawnrate (SENTINEL_SPAWN_MULTIPLIER);
     }
 
     public override void Fire()
