@@ -59,6 +59,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		_matrixGame.Reset ();
 		_matrixGame.SetSpawning (true);
+		MoneyManager.Instance.LinkScore ();
 	}
 
 	public void QuitGame ()

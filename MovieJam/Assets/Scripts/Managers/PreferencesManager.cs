@@ -44,11 +44,8 @@ public class PreferencesManager : Singleton<PreferencesManager>
 
 	public void SetValue(string name, int value)
 	{
-		if (value > PlayerPrefs.GetInt(name))
-		{
-			PlayerPrefs.SetInt(name, value);
-			PlayerPrefs.Save();
-		}
+		PlayerPrefs.SetInt(name, value);
+		PlayerPrefs.Save();
 	}
 
 	public int Get(string name)

@@ -87,21 +87,17 @@ public class MatrixGame : MonoBehaviour
 
 	public void HandleShootClick()
 	{
-		Debug.Log ("Loop Started");
 		foreach (GameObject unit in infantry) {
 			if (sentinels.Count > 0) 
 			{
-				Debug.Log (" Looping through Units! current unit name = " + unit.name);
 				GameObject target = sentinels [0];
 				unit.GetComponent<Infantry> ().AcquireTarget(target);
 				unit.GetComponent<Infantry> ().Fire ();
 				Destroy (target, 0.5f);
 				sentinels.RemoveAt (0);
-                MoneyManager.Instance.money = MoneyManager.Instance.getMoney() + 5;
-                MoneyManager.Instance.setMoney(MoneyManager.Instance.money);
-                MoneyManager.Instance.updateMoneyText();
+                MoneyManager.Instance.AddMoney(100);
+                // MoneyManager.Instance.updateMoneyText();
             }
 		}
-		Debug.Log("Loop done");
 	}
 }
