@@ -13,13 +13,15 @@ public class GameMenu : MonoBehaviour {
 	void Start () {
 		_tabSprites = Resources.LoadAll<Sprite> ("Spritesheets/Tab");
 
-		tabOffense = transform.Find ("UpgradesBG/TabButtonContainer/Tab1Button").gameObject;
-		tabDefense = transform.Find ("UpgradesBG/TabButtonContainer/Tab2Button").gameObject;
-		tab3 = transform.Find ("UpgradesBG/TabButtonContainer/Tab3Button").gameObject;
+		tabOffense = transform.Find ("Upgrades/TabButtonContainer/Tab1Button").gameObject;
+		tabDefense = transform.Find ("Upgrades/TabButtonContainer/Tab2Button").gameObject;
+		tab3 = transform.Find ("Upgrades/TabButtonContainer/Tab3Button").gameObject;
 
-		containerOffense = transform.Find ("UpgradesBG/OffenseUpgrades").gameObject;
-		containerDefense = transform.Find ("UpgradesBG/DefenseUpgrades").gameObject;
-		container3 = transform.Find ("UpgradesBG/Upgrades_3").gameObject;
+		containerOffense = transform.Find ("Upgrades/OffenseUpgrades").gameObject;
+		containerDefense = transform.Find ("Upgrades/DefenseUpgrades").gameObject;
+		container3 = transform.Find ("Upgrades/Upgrades_3").gameObject;
+
+		ShopManager.Instance.SetupButtons ();
 	}
 
 	public void HandleTab1Click()
@@ -53,5 +55,47 @@ public class GameMenu : MonoBehaviour {
 		containerOffense.SetActive (false);
 		tabDefense.GetComponent<Image> ().sprite = _tabSprites [0];
 		containerDefense.SetActive (false);
+	}
+
+	public void HandleUpgradeClick(int buttonNumber)
+	{
+		switch (buttonNumber) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+		case 11:
+			break;
+		case 12:
+			break;
+		case 13:
+			break;
+		case 14:
+			break;
+		case 15:
+			break;
+		case 16:
+			break;
+		case 17:
+			break;
+		}
 	}
 }
