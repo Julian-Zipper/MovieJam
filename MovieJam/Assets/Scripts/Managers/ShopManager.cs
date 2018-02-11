@@ -111,8 +111,12 @@ public class ShopManager : Singleton<ShopManager> {
         switch (type)
         {
 		case Unit.Type.Infantry:
-				_infantryLevel++;
-				PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
+                if (_infantryLevel < 5)
+                {
+                    _infantryLevel++;
+                    PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
+                    GameManager.Instance.GetInfantryUnits()[_infantryLevel-1].Show();
+                }				
                 break;
             case Unit.Type.APU:
                 _APUlevel++;
