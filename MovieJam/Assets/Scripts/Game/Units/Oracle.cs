@@ -17,6 +17,8 @@ public class Oracle : Unit
     {
         type = Type.Oracle;
         base.Init();
+		bulletCooldown = DEFAULT_BULLET_COOLDOWN;
+		cooldownTime = 0;
     }
 
     public override void Upgrade(int currentLevel)
@@ -42,14 +44,14 @@ public class Oracle : Unit
 
     void Update()
     {
-        if (firing)
-        {
-            cooldownTime -= Time.deltaTime;
-            if (cooldownTime <= 0)
-            {
-                Fire();
-                cooldownTime = bulletCooldown;
-            }
-        }
+		if(firing)
+		{
+			cooldownTime += Time.deltaTime;
+			if(cooldownTime >= bulletCooldown)
+			{
+				Fire();
+				cooldownTime = 0f;
+			}
+		}
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class APU : Unit {
 
-    const float DEFAULT_BULLET_COOLDOWN = 1;
+    const float DEFAULT_BULLET_COOLDOWN = 5;
     float bulletCooldown;
     float cooldownTime;
 
@@ -16,6 +16,8 @@ public class APU : Unit {
     {     
         type = Type.APU;
         base.Init();
+		bulletCooldown = DEFAULT_BULLET_COOLDOWN;
+		cooldownTime = 0;
     }
 
     public override void Upgrade(int currentLevel)
@@ -43,11 +45,11 @@ public class APU : Unit {
     {
        if(firing)
         {
-            cooldownTime -= Time.deltaTime;
-            if(cooldownTime <= 0)
+            cooldownTime += Time.deltaTime;
+            if(cooldownTime >= bulletCooldown)
             {
                 Fire();
-                cooldownTime = bulletCooldown;
+                cooldownTime = 0f;
             }
         }
     }

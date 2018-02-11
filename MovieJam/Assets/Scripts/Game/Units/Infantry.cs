@@ -18,29 +18,20 @@ public class Infantry : Unit
         type = Type.Infantry;
         base.Init();
         gameObject.SetActive(false);
+		bulletCooldown = DEFAULT_BULLET_COOLDOWN;
+		cooldownTime = 0;
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
         firing = true;
+		Debug.Log ("Called Show method");
+		GameManager.Instance.AddInfantry (this.gameObject);
     }
 
     public override void Fire()
     {
         base.Fire();
-    }
-
-    void Update()
-    {
-        if (firing)
-        {
-            cooldownTime -= Time.deltaTime;
-            if (cooldownTime <= 0)
-            {
-                Fire();
-                cooldownTime = bulletCooldown;
-            }
-        }
     }
 }

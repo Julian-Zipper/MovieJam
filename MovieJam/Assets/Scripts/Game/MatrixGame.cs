@@ -12,7 +12,7 @@ public class MatrixGame : MonoBehaviour
 	const float UNIT_SPAWN_MAX_X = 1f;
 	const float UNIT_SPAWN_HEIGHT = -2.5f;
 
-	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 8f;
+	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 3f;
 
 	List<GameObject> sentinels;
 	List<GameObject> apus;
@@ -59,7 +59,7 @@ public class MatrixGame : MonoBehaviour
 		_spawning = value;
 	}
 
-	void SpawnSentinel()
+	public void SpawnSentinel()
 	{
 		GameObject newSentinel = GameObject.Instantiate (Resources.Load<GameObject> ("Sentinel/Sentinel"));
 		newSentinel.transform.position = new Vector3 (Random.Range(SENTINEL_SPAWN_MIN_X, SENTINEL_SPAWN_MAX_X), SENTINEL_SPAWN_HEIGHT, 0);
@@ -67,22 +67,34 @@ public class MatrixGame : MonoBehaviour
 		sentinels.Add (newSentinel);
 	}
 
-	void SpawnInfantry()
+	public void AddInfantry(GameObject newInfantry)
 	{
-		GameObject newInfantry = GameObject.Instantiate (Resources.Load<GameObject> ("Units/Infantry"));
-		// TODO: instead of giving infantry a random position, give them a set position.
-		newInfantry.transform.position = new Vector3 (Random.Range(UNIT_SPAWN_MIN_X, UNIT_SPAWN_MAX_X), UNIT_SPAWN_HEIGHT, 0);
+		Debug.Log ("Adding Infantry to List");
 		infantry.Add (newInfantry);
+	}
+
+	public GameObject GetSentinel()
+	{
+		GameObject target = null;
+		if (sentinels.Count > 0)
+		{
+			target = sentinels [0];
+			Destroy (target, 0.5f);
+			sentinels.RemoveAt (0);
+		}
+		return target;
 	}
 
 	public void HandleShootClick()
 	{
+		Debug.Log ("Loop Started");
 		foreach (GameObject unit in infantry) {
-			if (sentinels.Count > 0)
+			if (sentinels.Count > 0) 
 			{
+				Debug.Log (" Looping through Units! current unit name = " + unit.name);
 				GameObject target = sentinels [0];
-				unit.GetComponent<Unit> ().AcquireTarget(target);
-				unit.GetComponent<Unit> ().Fire ();
+				unit.GetComponent<Infantry> ().AcquireTarget(target);
+				unit.GetComponent<Infantry> ().Fire ();
 				Destroy (target, 0.5f);
 				sentinels.RemoveAt (0);
                 MoneyManager.Instance.money = MoneyManager.Instance.getMoney() + 5;
@@ -90,5 +102,6 @@ public class MatrixGame : MonoBehaviour
                 MoneyManager.Instance.updateMoneyText();
             }
 		}
+		Debug.Log("Loop done");
 	}
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 
     const float BULLET_SPEED_LEVEL_MULTIPLIER = 1.5f;
-    const float DEFAULT_BULLET_SPEED = 1000f;
-	const string BULLET_PREFAB_LOCATION = "Units/Bullet";
+    const float DEFAULT_BULLET_SPEED = 10000f;
+	const string BULLET_PREFAB_LOCATION = "Units/Bullet2";
 
-	private GameObject target;
+	protected GameObject target;
 	private int level;
 
     [HideInInspector]
@@ -29,8 +29,12 @@ public class Unit : MonoBehaviour {
         Neo
     }
 
-    virtual public void Init() {
+	void Start()
+	{
 		shotPrefab = Resources.Load<GameObject> (BULLET_PREFAB_LOCATION);
+	}
+
+    virtual public void Init() {
         level = ShopManager.Instance.GetUnitLevel(type);
         bulletSpeed = DEFAULT_BULLET_SPEED;
         Upgrade(level);
@@ -38,7 +42,7 @@ public class Unit : MonoBehaviour {
 
     virtual public void Upgrade(int currentLevel)
 	{
-        bulletSpeed = bulletSpeed * (currentLevel * BULLET_SPEED_LEVEL_MULTIPLIER);
+        //bulletSpeed = bulletSpeed * (currentLevel * BULLET_SPEED_LEVEL_MULTIPLIER);
 		//Set values according to currentlevel to strenghten unit
 	}
 
@@ -49,6 +53,11 @@ public class Unit : MonoBehaviour {
 
     virtual public void Fire()
 	{
+		if (target == null)
+		{
+			target = GameManager.Instance.AcquireTarget ();
+		}
+
 		if (target != null)
 		{
 			//determine which way to shoot
@@ -57,8 +66,12 @@ public class Unit : MonoBehaviour {
 			direction.Normalize ();
 
 			GameObject shot = Instantiate (shotPrefab, transform);
+			Destroy (shot, 2f);
 			Rigidbody2D rb = shot.GetComponent<Rigidbody2D> ();
+
+			Debug.Log ("direction = " + direction + ", bulletSpeed = " + bulletSpeed);
 			rb.AddForce (direction * bulletSpeed);
+			target = null;
 		}
 	}
 }
