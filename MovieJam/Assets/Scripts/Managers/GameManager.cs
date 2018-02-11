@@ -25,6 +25,10 @@ public class GameManager : Singleton<GameManager>
     Oracle oracle;
     [SerializeField]
     Neo neo;
+    [SerializeField]
+    Transform infantryUnitsHolder;
+
+    List<Infantry> infantryUnits;
 
     override public void Init()
 	{
@@ -37,6 +41,17 @@ public class GameManager : Singleton<GameManager>
         trinity.Init();
         oracle.Init();
         neo.Init();
+        infantryUnits = new List<Infantry>();
+        for(int i = 0; i < infantryUnitsHolder.childCount; i++)
+        {
+            infantryUnits.Add(infantryUnitsHolder.GetChild(i).GetComponent<Infantry>());
+            infantryUnits[i].Init();
+        }
+        for(int i = 0; i < ShopManager.Instance.GetUnitLevel(Unit.Type.Infantry); i++)
+        {
+            infantryUnits[i].Show();
+        }
+
 		//_timerForTimeGameMode = _ballGame.transform.Find("GameTimer").GetComponent<TimerForTimeGameMode>();
 	}
 	 
@@ -57,8 +72,6 @@ public class GameManager : Singleton<GameManager>
     {
         switch (unitType)
         {
-            //case Unit.Type.Infantry:
-              //  return infantry;
             case Unit.Type.APU:
                 return apu;
             case Unit.Type.Morpheus:
@@ -71,5 +84,10 @@ public class GameManager : Singleton<GameManager>
                 return neo;
         }
         return null;
+    }
+
+    public List<Infantry> GetInfantryUnits()
+    {
+        return infantryUnits;
     }
 }

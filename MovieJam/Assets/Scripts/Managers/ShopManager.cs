@@ -109,24 +109,30 @@ public class ShopManager : Singleton<ShopManager> {
     void _UpgradeUnit(Unit.Type type)
     {
         int money = MoneyManager.Instance.getMoney();
-        Debug.Log("kek");
         int cost = GetUnitCost(type);
         if (money >= cost)
         {
-            MoneyManager.Instance.setMoney(money - cost);       
+                
             switch (type)
             {
-		    case Unit.Type.Infantry:
-				    _infantryLevel++;
-				    PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
+                case Unit.Type.Infantry:
+                    if (_infantryLevel < 5)
+                    {
+                        MoneyManager.Instance.setMoney(money - cost);
+                        _infantryLevel++;
+                        PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
+                        GameManager.Instance.GetInfantryUnits()[_infantryLevel - 1].Show();
+                    }
                     break;
                 case Unit.Type.APU:
                     _APUlevel++;
+                    MoneyManager.Instance.setMoney(money - cost);
                     PreferencesManager.Instance.SetValue("APULevel", _APUlevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_APUlevel);
                     break;
                 case Unit.Type.Morpheus:
                     _morpheusLevel++;
+                    MoneyManager.Instance.setMoney(money - cost);
                     PreferencesManager.Instance.SetValue("MorpheusLevel", _morpheusLevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_morpheusLevel);
                     break;
@@ -139,13 +145,17 @@ public class ShopManager : Singleton<ShopManager> {
                     _oracleLevel++;
                     PreferencesManager.Instance.SetValue("OracleLevel", _oracleLevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_oracleLevel);
+                    MoneyManager.Instance.setMoney(money - cost);
                     break;
                 case Unit.Type.Neo:
                     _neoLevel++;
                     PreferencesManager.Instance.SetValue("NeoLevel", _neoLevel);
                     GameManager.Instance.GetUnit(type).Upgrade(_neoLevel);
+                    MoneyManager.Instance.setMoney(money - cost);
                     break;
             }
+
+		
         }
     }
 
