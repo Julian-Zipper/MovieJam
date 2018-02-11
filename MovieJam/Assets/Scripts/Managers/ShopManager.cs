@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : Singleton<ShopManager> {
 
@@ -12,8 +13,38 @@ public class ShopManager : Singleton<ShopManager> {
     int _oracleLevel;
     int _neoLevel;
 
+	List<Text> upgradeButtonTexts;
+	List<Text> upgradeDescriptionTexts;
+
+	Transform gameMenu;
+
+	List<string> upgradeDescriptionNames;
+	List<string> upgradeDescriptions;
+	const string PURCHASE = "Purchase ";
+	const string UPGRADE = "Upgrade ";
+	const string NUM = "Current Lvl: ";
+
     public override void Init()
     {
+		upgradeButtonTexts = new List<Text> ();
+		upgradeDescriptionTexts = new List<Text> ();
+
+		upgradeDescriptionNames = new List<string>{ "Infantry", "APU", "Morpheus", "Trinity", "Oracle", "Neo" };
+		upgradeDescriptions = new List<string>{
+			"Shoots with every click.",
+			"Shoots automatically.\nAlso attracts some Sentinels.",
+			"Shoots automatically.\nAlso attracts Sentinels.",
+			"Shoots automatically.\nAlso attracts Sentinels.",
+			"Shoots automatically.\nAlso attracts Sentinels.",
+			"Shoots automatically.\nAlso attracts Lots of Sentinels." };
+
+		PreferencesManager.Instance.SetInitialValue ("InfantryLevel", 0);
+		PreferencesManager.Instance.SetInitialValue ("APULevel", 0);
+		PreferencesManager.Instance.SetInitialValue ("MorpheusLevel", 0);
+		PreferencesManager.Instance.SetInitialValue ("TrinityLevel", 0);
+		PreferencesManager.Instance.SetInitialValue ("OracleLevel", 0);
+		PreferencesManager.Instance.SetInitialValue ("NeoLevel", 0);
+
         _infantryLevel = PreferencesManager.Instance.Get("InfantryLevel");
         _APUlevel = PreferencesManager.Instance.Get("APULevel");
         _morpheusLevel = PreferencesManager.Instance.Get("MorpheusLevel");
@@ -22,42 +53,66 @@ public class ShopManager : Singleton<ShopManager> {
         _neoLevel = PreferencesManager.Instance.Get("NeoLevel");
     }
 
+	public void SetupButtons()
+	{
+		gameMenu = GameObject.Find ("GameMenu").transform;
+
+		upgradeButtonTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade1/Button/Text").gameObject.GetComponent<Text>());
+		upgradeButtonTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade2/Button/Text").gameObject.GetComponent<Text>());
+		upgradeButtonTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade3/Button/Text").gameObject.GetComponent<Text>());
+		upgradeButtonTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade4/Button/Text").gameObject.GetComponent<Text>());
+		upgradeButtonTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade5/Button/Text").gameObject.GetComponent<Text>());
+		upgradeButtonTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade6/Button/Text").gameObject.GetComponent<Text>());
+
+		upgradeDescriptionTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade1/Description").gameObject.GetComponent<Text> ());
+		upgradeDescriptionTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade2/Description").gameObject.GetComponent<Text> ());
+		upgradeDescriptionTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade3/Description").gameObject.GetComponent<Text> ());
+		upgradeDescriptionTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade4/Description").gameObject.GetComponent<Text> ());
+		upgradeDescriptionTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade5/Description").gameObject.GetComponent<Text> ());
+		upgradeDescriptionTexts.Add(gameMenu.Find ("Upgrades/OffenseUpgrades/Upgrade6/Description").gameObject.GetComponent<Text> ());
+
+		for (int i = 0; i < 6; i++)
+		{
+			Unit.Type typeNum = (Unit.Type) i;
+			upgradeButtonTexts [i].text = GetButtonText (i);
+			upgradeDescriptionTexts [i].text = GetDescriptionText(i);
+		}
+	}
+
+	string GetButtonText(int number)
+	{
+		Unit.Type typeNum = (Unit.Type) number;
+		int unitLevel = GetUnitLevel (typeNum);
+
+		string verb = UPGRADE;
+		if (unitLevel == 0) {
+			verb = PURCHASE;
+		}
+		return (verb + upgradeDescriptionNames [number]);
+	}
+
+	string GetDescriptionText(int number)
+	{
+		Unit.Type typeNum = (Unit.Type) number;
+		return (upgradeDescriptionNames [number] + ": " + upgradeDescriptions [number] + "\n" + NUM + GetUnitLevel (typeNum));
+	}
+
     public void HandleShopButton(int buttonNumber)
     {
-        switch (buttonNumber)
-        {
-            //TODO: Check if there's enough money before upgrading. If not, show feedback?
-            case 0:
-                //Example:
-                //if(MoneyManager.Instance.UnitAvailable(Unit.Type.Infantry))
-                _UpgradeUnit(Unit.Type.Infantry);
-                //else
-                //FeedbackManager.Instance.ShowNotEnoughMoneyFeedback();
-                break;
-            case 1:
-                _UpgradeUnit(Unit.Type.APU);
-                break;
-            case 2:
-                _UpgradeUnit(Unit.Type.Morpheus);
-                break;
-            case 3:
-                _UpgradeUnit(Unit.Type.Trinity);
-                break;
-            case 4:
-                _UpgradeUnit(Unit.Type.Oracle);
-                break;
-            case 5:
-                _UpgradeUnit(Unit.Type.Neo);
-                break;
-        }
+		Unit.Type typeNum = (Unit.Type) buttonNumber;
+		_UpgradeUnit (typeNum);
+
+		upgradeButtonTexts [buttonNumber].text = GetButtonText (buttonNumber);
+		upgradeDescriptionTexts [buttonNumber].text = GetDescriptionText (buttonNumber);
     }
 
     void _UpgradeUnit(Unit.Type type)
     {
         switch (type)
         {
-            case Unit.Type.Infantry:
-                //TODO: Add and activate another infantry unit
+		case Unit.Type.Infantry:
+				_infantryLevel++;
+				PreferencesManager.Instance.SetValue("InfantryLevel", _infantryLevel);
                 break;
             case Unit.Type.APU:
                 _APUlevel++;

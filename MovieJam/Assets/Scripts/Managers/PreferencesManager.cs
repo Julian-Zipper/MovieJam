@@ -6,6 +6,7 @@ public class PreferencesManager : Singleton<PreferencesManager>
 {
 	override public void Init()
 	{
+		ResetAll ();
 		// SetInitialPreference("sound", true);
 		// SetInitialPreference("tutorial", false);
 	}
@@ -74,5 +75,10 @@ public class PreferencesManager : Singleton<PreferencesManager>
 			return 0;
 		}
 		return 1;
+	}
+
+	public void ResetAll()
+	{
+		PlayerPrefs.DeleteAll ();
 	}
 }

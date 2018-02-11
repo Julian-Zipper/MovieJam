@@ -12,7 +12,7 @@ public class MatrixGame : MonoBehaviour
 	const float UNIT_SPAWN_MAX_X = 1f;
 	const float UNIT_SPAWN_HEIGHT = -2.5f;
 
-	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 3f;
+	const float SENTINEL_STARTING_SPAWN_TRESHOLD = 8f;
 
 	List<GameObject> sentinels;
 	List<GameObject> apus;

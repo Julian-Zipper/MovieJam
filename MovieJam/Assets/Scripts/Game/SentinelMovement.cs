@@ -22,7 +22,7 @@ public class SentinelMovement : MonoBehaviour {
 		startRotation = transform.rotation;
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		rot_timer += Time.deltaTime;
 		// horizontal Sine movement:
 		x = Mathf.Sin(rot_timer) * SINE_MULTIPLIER;
