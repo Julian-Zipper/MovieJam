@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Neo : Unit
 {
-	const float SENTINEL_SPAWN_MULTIPLIER = 3f;
+	const float SENTINEL_SPAWN_MULTIPLIER = 4f;
     const float DEFAULT_BULLET_COOLDOWN = 0.25f;
     float bulletCooldown;
     float cooldownTime;

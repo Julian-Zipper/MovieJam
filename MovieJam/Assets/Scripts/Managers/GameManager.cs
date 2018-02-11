@@ -69,6 +69,14 @@ public class GameManager : Singleton<GameManager>
 		_menu.Reset();
 	}
 
+	void Update ()
+	{
+		if (Input.GetKey("escape"))
+		{
+			Application.Quit();
+		}
+	}
+
     public Unit GetUnit(Unit.Type unitType)
     {
         switch (unitType)

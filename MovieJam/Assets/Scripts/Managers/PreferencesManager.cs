@@ -6,7 +6,6 @@ public class PreferencesManager : Singleton<PreferencesManager>
 {
 	override public void Init()
 	{
-		ResetAll ();
 		// SetInitialPreference("sound", true);
 		// SetInitialPreference("tutorial", false);
 	}

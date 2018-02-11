@@ -21,7 +21,7 @@ public class ShopManager : Singleton<ShopManager> {
 	List<string> upgradeDescriptionNames;
 	List<string> upgradeDescriptions;
 	const string PURCHASE = "Purchase ";
-	const string UPGRADE = "Upgrade ";
+	const string UPGRADE = "Lvl up ";
 	const string NUM = "Current Lvl: ";
 
 	const int INFANTRY_BASE_COST = 100;
@@ -29,7 +29,7 @@ public class ShopManager : Singleton<ShopManager> {
 	const int MORPHEUS_BASE_COST = 500;
 	const int TRINITY_BASE_COST = 1000;
 	const int ORACLE_BASE_COST = 2000;
-	const int NEO_BASE_COST = 5000;
+	const int NEO_BASE_COST = 13131;
 
 	const float UPGRADE_POWER_MULTIPLIER = 0.05f;
 	const float UPGRADE_POWER_INFANTRY_MULTIPLIER = 0.225f;
@@ -154,6 +154,15 @@ public class ShopManager : Singleton<ShopManager> {
 
 		upgradeButtonTexts [buttonNumber].text = GetButtonText (buttonNumber);
 		upgradeDescriptionTexts [buttonNumber].text = GetDescriptionText (buttonNumber);
+
+		if (buttonNumber == 5 && GetUnitLevel(typeNum) == 2)
+		{
+			upgradeDescriptionTexts [buttonNumber].text = "Upgrade Neo one more time to win the game!\n"+ NUM + GetUnitLevel (typeNum);
+		}
+		if (buttonNumber == 5 && GetUnitLevel(typeNum) == 3)
+		{
+			Application.Quit ();
+		}
     }
 
     void _UpgradeUnit(Unit.Type type)

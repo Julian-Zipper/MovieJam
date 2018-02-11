@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Morpheus : Unit
 {
-	const float SENTINEL_SPAWN_MULTIPLIER = 1.6f;
+	const float SENTINEL_SPAWN_MULTIPLIER = 1.95f;
     const float DEFAULT_BULLET_COOLDOWN = 5f;
     float bulletCooldown;
     float cooldownTime;

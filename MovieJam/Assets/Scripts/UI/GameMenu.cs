@@ -21,6 +21,11 @@ public class GameMenu : MonoBehaviour {
 		containerDefense = transform.Find ("Upgrades/DefenseUpgrades").gameObject;
 		container3 = transform.Find ("Upgrades/Upgrades_3").gameObject;
 
+		Invoke ("SetupTextInUI", 0.1f);
+	}
+
+	void SetupTextInUI()
+	{
 		ShopManager.Instance.SetupButtons ();
 	}
 

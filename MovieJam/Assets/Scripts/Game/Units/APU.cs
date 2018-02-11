@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class APU : Unit {
 
-	const float SENTINEL_SPAWN_MULTIPLIER = 1.4f;
-    const float DEFAULT_BULLET_COOLDOWN = 6f;
+	const float SENTINEL_SPAWN_MULTIPLIER = 1.5f;
+    const float DEFAULT_BULLET_COOLDOWN = 7.5f;
     float bulletCooldown;
     float cooldownTime;
 

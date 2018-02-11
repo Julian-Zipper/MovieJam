@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour {
 
 	public void OnPauseClick()
 	{
+		//GameManager.QuitGame ();
 		gameObject.SetActive(true);
 		Time.timeScale = 0;
 	}
