@@ -9,6 +9,8 @@ public class MoneyManager : Singleton<MoneyManager>
     public int money;
     [SerializeField]
      Text moneyText;
+    [SerializeField]
+    Text fundsText;
    
 
 
@@ -31,6 +33,12 @@ public class MoneyManager : Singleton<MoneyManager>
     {          
         moneyText.text = "ZION_$: " + getMoney();
 
+    }
+
+    public void notEnougFundsText(string unit)
+    {
+       
+        fundsText.text = "You do not have enough ZION_$ to buy:" + unit;
     }
 
 

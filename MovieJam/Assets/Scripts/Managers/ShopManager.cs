@@ -109,6 +109,7 @@ public class ShopManager : Singleton<ShopManager> {
     void _UpgradeUnit(Unit.Type type)
     {
         int money = MoneyManager.Instance.getMoney();
+        
         int cost = GetUnitCost(type);
         if (money >= cost)
         {
@@ -150,12 +151,16 @@ public class ShopManager : Singleton<ShopManager> {
                 case Unit.Type.Neo:
                     _neoLevel++;
                     PreferencesManager.Instance.SetValue("NeoLevel", _neoLevel);
+                    
                     GameManager.Instance.GetUnit(type).Upgrade(_neoLevel);
                     MoneyManager.Instance.setMoney(money - cost);
                     break;
             }
 
-		
+
+        }else
+        {
+            MoneyManager.Instance.notEnougFundsText(type.ToString());
         }
     }
 
